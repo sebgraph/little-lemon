@@ -1,1 +1,1 @@
-## little-lemon restaurant Web app
+## little-lemon restaurant Web app Coursera
