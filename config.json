@@ -1,0 +1,27 @@
+{
+  "source": ["tokens/**/*.json"],
+  "platforms": {
+    "css": {
+      "options": {
+        "showFileHeader": false,
+        "outputReferences": true
+      },
+      "transformGroup": "css",
+      "buildPath": "src/",
+      "files": [
+        {
+          "destination": "_variables.css",
+          "format": "css/variables"
+        },
+        {
+          "destination": "_variablesWithoutReferences.css",
+          "format": "css/variables",
+          "options": {
+            "showFileHeader": true,
+            "outputReferences": false
+          }
+        }
+      ]
+    }
+  }
+}
