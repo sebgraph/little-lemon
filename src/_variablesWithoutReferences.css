@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Sat, 15 Jul 2023 18:52:21 GMT
+ * Generated on Sat, 15 Jul 2023 22:49:58 GMT
  */
 
 :root {
@@ -70,15 +70,13 @@
   --global-shadow-400: [object Object],[object Object];
   --global-shadow-500: [object Object],[object Object];
   --global-shadow-600: [object Object],[object Object];
-  --global-font-families-markazi-text: Markazi Text;
-  --global-font-families-karla: Karla;
-  --global-line-heights-0: AUTO;
-  --global-line-heights-1: 150%;
-  --global-font-weights-markazi-text-0: Bold;
-  --global-font-weights-markazi-text-1: Medium;
-  --global-font-weights-karla-2: Bold;
-  --global-font-weights-karla-3: Regular;
-  --global-font-weights-karla-4: Medium;
+  --global-font-family-markazi-text: Markazi Text;
+  --global-font-family-karla: Karla;
+  --global-line-height-text: 150%;
+  --global-line-height-auto: Auto;
+  --global-font-weight-bold: 700;
+  --global-font-weight-medium: Medium;
+  --global-font-weight-regular: Regular;
   --global-font-size-0: 14;
   --global-font-size-1: 16;
   --global-font-size-2: 18;
@@ -100,4 +98,5 @@
   --global-m: 1;
   --global-l: 2;
   --global-xl: 3;
+  --global-display-l-bold: [object Object];
 }

@@ -1,18 +1,10 @@
 import "./App.css";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
     <>
-      <header>
-        <nav>
-          <ul>
-            <li>
-              <a href="#home">Home</a>
-            </li>
-          </ul>
-        </nav>
-      </header>
-      <h1>test</h1>
+      <Navbar />
     </>
   );
 }

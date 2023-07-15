@@ -1,0 +1,26 @@
+header {
+  background: #fff;
+  justify-content: center;
+  display: flex;
+}
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 1200px;
+  padding: 12px 0;
+}
+
+.navbar li {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}
+
+.link {
+  text-decoration: none;
+  padding: 16px;
+  color: black;
+}
