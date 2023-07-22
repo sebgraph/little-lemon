@@ -1,0 +1,26 @@
+.card {
+  width: 100%;
+  border: 1px solid var(--global-neutrals-border-2);
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+}
+.img-container {
+  height: 180px;
+  overflow: hidden;
+}
+.card-img {
+  background: var(--global-neutrals-fill-3);
+  width: 100%;
+  overflow: hidden;
+}
+.content {
+  background: var(--global-neutrals-fill-1);
+  padding: var(--global-spacing-8);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}

@@ -1,31 +1,44 @@
+import { useState } from "react";
 import Logo from "../img/logo.png";
 import "./NavbarStyles.css";
+import { Bars3BottomLeftIcon, XMarkIcon } from "@heroicons/react/24/solid";
+import { Link } from "react-router-dom";
 
 function Navbar() {
+  const [Mobile, setMobile] = useState(false);
+
   return (
     <>
       <header>
-        <nav className="navbar">
-          <a href="index.html">
+        <nav>
+          <Link to="/">
             <img src={Logo} alt="Little lemon logo"></img>
-          </a>
-          <ul>
-            <li>
-              <a className="link" href="#home">
-                Home
-              </a>
-              <a className="link" href="#home">
-                About
-              </a>
-              <a className="link" href="#home">
-                Menu
-              </a>
-              <a className="link" href="#home">
-                Reservations
-              </a>
-            </li>
+          </Link>
+          <ul
+            className={Mobile ? "links-mobile" : "links"}
+            onClick={() => setMobile(false)}
+          >
+            <Link className="link link-mobile" to="/">
+              <li>Home</li>
+            </Link>
+            <Link className="link link-mobile" to="/about">
+              <li>About</li>
+            </Link>
+            <Link className="link link-mobile" to="/menu">
+              <li>Menu</li>
+            </Link>
+            <Link className="link-reservations link-mobile" to="/reservations">
+              <li>Reservations</li>
+            </Link>
           </ul>
         </nav>
+        <button className="mobile-menu-icon" onClick={() => setMobile(!Mobile)}>
+          {Mobile ? (
+            <XMarkIcon className="icon" />
+          ) : (
+            <Bars3BottomLeftIcon className="icon" />
+          )}
+        </button>
       </header>
     </>
   );
