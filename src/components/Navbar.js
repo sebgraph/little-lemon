@@ -3,6 +3,7 @@ import Logo from "../img/logo.png";
 import "./NavbarStyles.css";
 import { Bars3BottomLeftIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
+import Button from "./Button";
 
 function Navbar() {
   const [Mobile, setMobile] = useState(false);
@@ -32,13 +33,13 @@ function Navbar() {
             </Link>
           </ul>
         </nav>
-        <button className="mobile-menu-icon" onClick={() => setMobile(!Mobile)}>
+        <Button className="mobile-menu-icon" onClick={() => setMobile(!Mobile)}>
           {Mobile ? (
             <XMarkIcon className="icon" />
           ) : (
             <Bars3BottomLeftIcon className="icon" />
           )}
-        </button>
+        </Button>
       </header>
     </>
   );

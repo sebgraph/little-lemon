@@ -35,6 +35,13 @@
   line-height: var(--global-line-height-auto);
   margin: 0;
 }
+.body-medium {
+  font-family: var(--global-font-family-karla);
+  font-size: var(--global-font-size-1);
+  font-weight: var(--global-font-weight-medium);
+  line-height: var(--global-line-height-auto);
+  margin: 0;
+}
 .body-bold {
   font-family: var(--global-font-family-karla);
   font-size: var(--global-font-size-1);

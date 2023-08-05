@@ -1,5 +1,6 @@
 import "./Card.css";
 import "../styles/typography.css";
+import { TruckIcon } from "@heroicons/react/24/outline";
 
 export function Card(props) {
   return (
@@ -13,10 +14,11 @@ export function Card(props) {
             <h3 className="headline2">{props.name}</h3>
             <p className="body-bold ">{props.price}</p>
           </div>
-          <p className="body-regular">{props.description}</p>
+          <p className="body-medium">{props.description}</p>
         </div>
         <div className="order-delivery">
-          <p>Order delivery</p>
+          <p className="body-bold">Order delivery</p>
+          <TruckIcon className="truck-icon" />
         </div>
       </div>
     </div>

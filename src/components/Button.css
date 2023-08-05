@@ -1,0 +1,21 @@
+@import "../_variables.css";
+
+.btn {
+  cursor: pointer;
+  font-weight: var(--global-font-weight-bold);
+  font-size: var(--global-font-size-1);
+  line-height: var(--global-line-height-text);
+  font-family: var(--global-font-family-karla);
+  text-decoration: none;
+  padding: 16px;
+  background-color: var(--global-secondary-6);
+  color: var(--global-neutrals-text-4);
+  transition: all 0.3s ease;
+  border-radius: var(--global-border-s);
+  &:hover {
+    background: var(--global-secondary-4);
+  }
+  &:active {
+    background: var(--global-secondary-3);
+  }
+}

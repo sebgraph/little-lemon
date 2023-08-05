@@ -2,7 +2,7 @@ const dishes = [
   {
     id: 1,
     image:
-      "https://img.taste.com.au/FRxe0EIh/w643-h428-cfill-q90/taste/2022/10/greek-lemon-rice-salad-181739-1.jpg",
+      "http://drive.google.com/uc?export=view&id=19kUnYjWuC9_SNY26K87iCcjZMlEZs0YB",
     name: "Greek Salad",
     price: "$12.99",
     description:
@@ -11,7 +11,7 @@ const dishes = [
   {
     id: 2,
     image:
-      "https://img.taste.com.au/FRxe0EIh/w643-h428-cfill-q90/taste/2022/10/greek-lemon-rice-salad-181739-1.jpg",
+      "http://drive.google.com/uc?export=view&id=1TIJ2TULkOGqyMM4h-_SG5H6LpxQzv3gV",
     name: "Brushetta",
     price: "$7.99",
     description:
@@ -20,7 +20,7 @@ const dishes = [
   {
     id: 3,
     image:
-      "https://img.taste.com.au/FRxe0EIh/w643-h428-cfill-q90/taste/2022/10/greek-lemon-rice-salad-181739-1.jpg",
+      "http://drive.google.com/uc?export=view&id=1VH1qO0q9bH_2NTO1ObmY8_qwRC8ou2Gq",
     name: "Grilled Fish",
     price: "$20.00",
     description:
