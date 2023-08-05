@@ -1,23 +1,24 @@
 import "./BookingForm.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const BookingForm = ({ availableTimes, updateTimes }) => {
+const BookingForm = ({ availableTimes, submitForm }) => {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [guests, setGuests] = useState("");
   const [birthday, setBirthday] = useState("");
-  /*   const [availableTimes, setAvailableTimes] = useState([
-    "17:00",
-    "18:00",
-    "19:00",
-    "20:00",
-    "21:00",
-    "22:00",
-  ]); */
+  const [loading, setLoading] = useState(true);
 
   const getIsFormValid = () => {
     return date !== "" && time !== "" && guests !== "" && birthday !== "";
   };
+
+  useEffect(() => {
+    setLoading(true);
+    // Fetch data when the component mounts or the date form field is changed
+    updateTimes({ type: "UPDATE_TIMES", date: date }).then(() => {
+      setLoading(false); // Set loading to false when the data is available
+    });
+  }, [date]);
 
   const clearForm = () => {
     setDate("");
@@ -28,14 +29,25 @@ const BookingForm = ({ availableTimes, updateTimes }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("Reservation created!");
+    submitForm({ date, time, guests, birthday });
     clearForm();
   };
 
   const handleDateChange = (e) => {
     setDate(e.target.value);
-    // Dispatch state change when date form field is changed
-    updateTimes({ type: "UPDATE_TIMES", date: e.target.value });
+  };
+
+  const updateTimes = async (action) => {
+    // Simulate API call and return mock data
+    // Replace this with your actual API call logic in a real scenario
+    const mockData = {
+      "2023-08-23": ["17:00", "18:00", "19:00"],
+      "2023-08-24": ["18:00", "19:00", "20:00"],
+      "2023-08-25": ["19:00", "20:00", "21:00"],
+    };
+
+    const times = mockData[action.date] || [];
+    return times;
   };
 
   return (
@@ -48,15 +60,19 @@ const BookingForm = ({ availableTimes, updateTimes }) => {
         id="res-date"
       />
       <label htmlFor="res-time">Choose time</label>
-      <select
-        value={time}
-        onChange={(e) => setTime(e.target.value)}
-        id="res-time"
-      >
-        {availableTimes.map((timeOption) => (
-          <option key={timeOption}>{timeOption}</option>
-        ))}
-      </select>
+      {loading ? (
+        <p>Loading available times...</p>
+      ) : (
+        <select
+          value={time}
+          onChange={(e) => setTime(e.target.value)}
+          id="res-time"
+        >
+          {availableTimes.map((timeOption) => (
+            <option key={timeOption}>{timeOption}</option>
+          ))}
+        </select>
+      )}
       <label htmlFor="guests">Number of guests</label>
       <input
         value={guests}
