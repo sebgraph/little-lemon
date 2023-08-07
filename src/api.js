@@ -1,11 +1,12 @@
 // api.js
+// api.js
 export function fetchAPI(date) {
   // Simulate API call and return mock data
   // Replace this with your actual API call logic in a real scenario
   const mockData = {
-    "2023-08-23": ["17:00", "18:00", "19:00"],
-    "2023-08-24": ["18:00", "19:00", "20:00"],
-    "2023-08-25": ["19:00", "20:00", "21:00"],
+    "2023-08-23": ["Select an option", "17:00", "18:00", "19:00"],
+    "2023-08-24": ["Select an option", "18:00", "19:00", "20:00"],
+    "2023-08.25": ["Select an option", "19:00", "20:00", "21:00"],
   };
 
   return mockData[date] || [];

@@ -1,11 +1,14 @@
+// Reservations.js
 import React, { useState, useEffect } from "react";
 import BookingForm from "../components/BookingForm";
 import "./reservations.css";
 import { fetchAPI, submitAPI } from "../api";
 import { useNavigate } from "react-router-dom";
+import ConfirmedBooking from "../components/ConfirmedBooking";
 
 const Reservations = () => {
   const [availableTimes, setAvailableTimes] = useState([]);
+  const [isBookingConfirmed, setIsBookingConfirmed] = useState(false); // State to track booking confirmation
   const navigate = useNavigate(); // Initialize the useNavigate hook
 
   useEffect(() => {
@@ -30,6 +33,7 @@ const Reservations = () => {
   const submitForm = async (formData) => {
     const isBookingSuccessful = await submitAPI(formData);
     if (isBookingSuccessful) {
+      setIsBookingConfirmed(true); // Set isBookingConfirmed to true when the form is successfully submitted
       navigate("/booking-confirmed"); // Navigate to the booking confirmation page
     } else {
       // Handle unsuccessful booking (optional)
@@ -40,7 +44,15 @@ const Reservations = () => {
     <section className="hero">
       <div className="container">
         <h1>Reservations</h1>
-        <BookingForm availableTimes={availableTimes} submitForm={submitForm} />
+        {/* Conditionally render the BookingForm or ConfirmedBooking based on isBookingConfirmed */}
+        {isBookingConfirmed ? (
+          <ConfirmedBooking />
+        ) : (
+          <BookingForm
+            availableTimes={availableTimes}
+            submitForm={submitForm}
+          />
+        )}
       </div>
     </section>
   );

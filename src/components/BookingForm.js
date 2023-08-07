@@ -1,27 +1,40 @@
 import "./BookingForm.css";
 import React, { useEffect, useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { validateEmail } from "../ValidateEmail";
 
-const BookingForm = ({ availableTimes, submitForm }) => {
-  const [date, setDate] = useState("");
+const BookingForm = ({ submitForm }) => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [date, setDate] = useState(new Date());
   const [time, setTime] = useState("");
   const [guests, setGuests] = useState("");
   const [birthday, setBirthday] = useState("");
   const [loading, setLoading] = useState(true);
+  const [timesOptions, setTimesOptions] = useState([]); // State to store the available time options
 
   const getIsFormValid = () => {
-    return date !== "" && time !== "" && guests !== "" && birthday !== "";
+    return (
+      name &&
+      validateEmail(email) &&
+      date !== "" &&
+      time !== "" &&
+      guests !== "" &&
+      birthday !== ""
+    );
   };
 
   useEffect(() => {
-    setLoading(true);
-    // Fetch data when the component mounts or the date form field is changed
-    updateTimes({ type: "UPDATE_TIMES", date: date }).then(() => {
-      setLoading(false); // Set loading to false when the data is available
-    });
+    const formattedDate = date.toISOString().split("T")[0];
+    updateTimes(formattedDate);
   }, [date]);
 
   const clearForm = () => {
-    setDate("");
+    setName("");
+    setEmail("");
+    setDate(new Date());
     setTime("");
     setGuests("");
     setBirthday("");
@@ -29,46 +42,91 @@ const BookingForm = ({ availableTimes, submitForm }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    submitForm({ date, time, guests, birthday });
+    submitForm({ date: date.toISOString(), time, guests, birthday });
     clearForm();
   };
 
-  const handleDateChange = (e) => {
-    setDate(e.target.value);
+  const handleDateChange = (selectedDate) => {
+    setDate(selectedDate);
   };
 
-  const updateTimes = async (action) => {
+  const updateTimes = async (formattedDate) => {
     // Simulate API call and return mock data
     // Replace this with your actual API call logic in a real scenario
     const mockData = {
-      "2023-08-23": ["17:00", "18:00", "19:00"],
-      "2023-08-24": ["18:00", "19:00", "20:00"],
-      "2023-08-25": ["19:00", "20:00", "21:00"],
+      "2023-08-23": ["Select an option", "17:00", "18:00", "19:00"],
+      "2023-08-24": ["Select an option", "18:00", "19:00", "20:00"],
+      "2023-08-25": ["Select an option", "19:00", "20:00", "21:00"],
     };
 
-    const times = mockData[action.date] || [];
-    return times;
+    const times = mockData[formattedDate] || [];
+    setTimesOptions(times); // Set the available time options in the state
+    setLoading(false); // Update loading state to false after fetching data
   };
 
   return (
     <form className="reserve-form" onSubmit={handleSubmit}>
-      <label htmlFor="res-date">Choose date</label>
+      <label htmlFor="name">Complete name</label>
       <input
-        value={date}
+        value={name}
+        onChange={(e) => {
+          setName(e.target.value);
+        }}
+        onKeyUp={(e) => {
+          const disallowedKeys = [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+          ];
+          if (disallowedKeys.includes(e.key)) {
+            setName(name.replace(/[0-9]/g, ""));
+          }
+        }}
+        placeholder="Name"
+        id="name"
+      />
+
+      <label htmlFor="email">Email address</label>
+      <input
+        value={email}
+        onChange={(e) => {
+          setEmail(e.target.value);
+          setEmailError(
+            validateEmail(e.target.value) ? "" : "Invalid email address"
+          );
+        }}
+        placeholder="Email address"
+        id="email"
+      />
+      {emailError && <p className="error-message">{emailError}</p>}
+
+      <label htmlFor="res-date">Choose date</label>
+      <DatePicker
+        selected={date}
         onChange={handleDateChange}
-        type="date"
+        dateFormat="yyyy-MM-dd"
         id="res-date"
+        minDate={new Date()}
       />
       <label htmlFor="res-time">Choose time</label>
       {loading ? (
         <p>Loading available times...</p>
+      ) : timesOptions.length === 0 ? (
+        <p>No available times for selected date</p>
       ) : (
         <select
           value={time}
           onChange={(e) => setTime(e.target.value)}
           id="res-time"
         >
-          {availableTimes.map((timeOption) => (
+          {timesOptions.map((timeOption) => (
             <option key={timeOption}>{timeOption}</option>
           ))}
         </select>
@@ -96,7 +154,7 @@ const BookingForm = ({ availableTimes, submitForm }) => {
       <input
         type="submit"
         value="Make Your reservation"
-        disabled={!getIsFormValid()}
+        disabled={!getIsFormValid() || !!emailError}
       />
     </form>
   );

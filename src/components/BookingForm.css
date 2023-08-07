@@ -3,3 +3,6 @@
   max-width: 200px;
   gap: 20px;
 }
+.error-message {
+  color: red;
+}
