@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import BookingForm from "../components/BookingForm";
 import "./reservations.css";
+import "../styles/typography.css";
 import { fetchAPI, submitAPI } from "../api";
 import { useNavigate } from "react-router-dom";
 import ConfirmedBooking from "../components/ConfirmedBooking";
@@ -41,18 +42,27 @@ const Reservations = () => {
   };
 
   return (
-    <section className="hero">
+    <section className="reservations-section">
       <div className="container">
-        <h1>Reservations</h1>
+        <div className="reservation-text">
+          <h1 className="display">Book a Table</h1>
+          <p className="body-medium reservation-body">
+            Reserve your table now to enjoy an unforgettable culinary journey at
+            our Mediterranean restaurant. Fill in the details and select your
+            preferred date and time.
+          </p>
+        </div>
         {/* Conditionally render the BookingForm or ConfirmedBooking based on isBookingConfirmed */}
-        {isBookingConfirmed ? (
-          <ConfirmedBooking />
-        ) : (
-          <BookingForm
-            availableTimes={availableTimes}
-            submitForm={submitForm}
-          />
-        )}
+        <div className="reservation-form">
+          {isBookingConfirmed ? (
+            <ConfirmedBooking />
+          ) : (
+            <BookingForm
+              availableTimes={availableTimes}
+              submitForm={submitForm}
+            />
+          )}
+        </div>
       </div>
     </section>
   );

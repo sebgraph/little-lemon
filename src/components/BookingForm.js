@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { validateEmail } from "../ValidateEmail";
+import "../styles/typography.css";
 
 const BookingForm = ({ submitForm }) => {
   const [name, setName] = useState("");
@@ -14,6 +15,7 @@ const BookingForm = ({ submitForm }) => {
   const [birthday, setBirthday] = useState("");
   const [loading, setLoading] = useState(true);
   const [timesOptions, setTimesOptions] = useState([]); // State to store the available time options
+  const [loadingSubmit, setLoadingSubmit] = useState(false);
 
   const getIsFormValid = () => {
     return (
@@ -40,10 +42,24 @@ const BookingForm = ({ submitForm }) => {
     setBirthday("");
   };
 
-  const handleSubmit = (e) => {
+  /*   const handleSubmit = (e) => {
     e.preventDefault();
     submitForm({ date: date.toISOString(), time, guests, birthday });
     clearForm();
+  }; */
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoadingSubmit(true); // Set loading state to true
+
+    try {
+      await submitForm({ date: date.toISOString(), time, guests, birthday });
+      clearForm();
+      setLoadingSubmit(false); // Reset loading state after successful submission
+    } catch (error) {
+      // Handle submission error
+      setLoadingSubmit(false); // Reset loading state after error
+    }
   };
 
   const handleDateChange = (selectedDate) => {
@@ -66,96 +82,130 @@ const BookingForm = ({ submitForm }) => {
 
   return (
     <form className="reserve-form" onSubmit={handleSubmit}>
-      <label htmlFor="name">Complete name</label>
-      <input
-        value={name}
-        onChange={(e) => {
-          setName(e.target.value);
-        }}
-        onKeyUp={(e) => {
-          const disallowedKeys = [
-            "0",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-          ];
-          if (disallowedKeys.includes(e.key)) {
-            setName(name.replace(/[0-9]/g, ""));
-          }
-        }}
-        placeholder="Name"
-        id="name"
-      />
+      <div className="field">
+        <label className="label body-medium" htmlFor="name">
+          Complete name
+        </label>
+        <input
+          type="text"
+          className="input"
+          value={name}
+          onChange={(e) => {
+            setName(e.target.value);
+          }}
+          onKeyUp={(e) => {
+            const disallowedKeys = [
+              "0",
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6",
+              "7",
+              "8",
+              "9",
+            ];
+            if (disallowedKeys.includes(e.key)) {
+              setName(name.replace(/[0-9]/g, ""));
+            }
+          }}
+          placeholder="Name"
+          id="name"
+        />
+      </div>
 
-      <label htmlFor="email">Email address</label>
-      <input
-        value={email}
-        onChange={(e) => {
-          setEmail(e.target.value);
-          setEmailError(
-            validateEmail(e.target.value) ? "" : "Invalid email address"
-          );
-        }}
-        placeholder="Email address"
-        id="email"
-      />
-      {emailError && <p className="error-message">{emailError}</p>}
+      <div className="field-email">
+        <div className="field">
+          <label className="label body-medium" htmlFor="email">
+            Email address
+          </label>
+          <input
+            type="email"
+            className="input"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              setEmailError(
+                validateEmail(e.target.value) ? "" : "Invalid email address"
+              );
+            }}
+            placeholder="Email address"
+            id="email"
+          />
+        </div>
+        {emailError && <p className="error-message">{emailError}</p>}
+      </div>
 
-      <label htmlFor="res-date">Choose date</label>
-      <DatePicker
-        selected={date}
-        onChange={handleDateChange}
-        dateFormat="yyyy-MM-dd"
-        id="res-date"
-        minDate={new Date()}
-      />
-      <label htmlFor="res-time">Choose time</label>
-      {loading ? (
-        <p>Loading available times...</p>
-      ) : timesOptions.length === 0 ? (
-        <p>No available times for selected date</p>
-      ) : (
+      <div className="field">
+        <label className="label body-medium" htmlFor="res-date">
+          Choose date
+        </label>
+        <DatePicker
+          selected={date}
+          onChange={handleDateChange}
+          dateFormat="yyyy-MM-dd"
+          id="res-date"
+          minDate={new Date()}
+        />
+        <label className="label body-medium" htmlFor="res-time">
+          Choose time
+        </label>
+        {loading ? (
+          <p>Loading available times...</p>
+        ) : timesOptions.length === 0 ? (
+          <p>No available times for selected date</p>
+        ) : (
+          <select
+            value={time}
+            onChange={(e) => setTime(e.target.value)}
+            id="res-time"
+          >
+            {timesOptions.map((timeOption) => (
+              <option key={timeOption}>{timeOption}</option>
+            ))}
+          </select>
+        )}
+      </div>
+
+      <div className="field">
+        <label className="label body-medium" htmlFor="guests">
+          Number of guests
+        </label>
+        <input
+          className="input"
+          value={guests}
+          onChange={(e) => setGuests(e.target.value)}
+          type="number"
+          placeholder="1"
+          min="1"
+          max="10"
+          id="guests"
+        />
+      </div>
+
+      <div className="field">
+        <label className="label body-medium" htmlFor="occasion">
+          Occasion
+        </label>
         <select
-          value={time}
-          onChange={(e) => setTime(e.target.value)}
-          id="res-time"
+          value={birthday}
+          onChange={(e) => setBirthday(e.target.value)}
+          id="occasion"
         >
-          {timesOptions.map((timeOption) => (
-            <option key={timeOption}>{timeOption}</option>
-          ))}
+          <option value="">Select an occasion</option>
+          <option value="Birthday">Birthday</option>
+          <option value="Anniversary">Anniversary</option>
         </select>
-      )}
-      <label htmlFor="guests">Number of guests</label>
+      </div>
+
       <input
-        value={guests}
-        onChange={(e) => setGuests(e.target.value)}
-        type="number"
-        placeholder="1"
-        min="1"
-        max="10"
-        id="guests"
-      />
-      <label htmlFor="occasion">Occasion</label>
-      <select
-        value={birthday}
-        onChange={(e) => setBirthday(e.target.value)}
-        id="occasion"
-      >
-        <option value="">Select an occasion</option>
-        <option value="Birthday">Birthday</option>
-        <option value="Anniversary">Anniversary</option>
-      </select>
-      <input
+        className="input-submit"
         type="submit"
         value="Make Your reservation"
-        disabled={!getIsFormValid() || !!emailError}
+        disabled={!getIsFormValid() || !!emailError || loadingSubmit}
       />
+      {loadingSubmit && <div className="loader"></div>}
     </form>
   );
 };

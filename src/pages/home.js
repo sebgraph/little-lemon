@@ -62,8 +62,8 @@ const Home = () => {
           <h2 className="headline1">Testimonials</h2>
           <div className="testimonials-group">
             <div className="testimonials-card">
-              <span>“</span>
-              <p className="body-bold">Testimony</p>
+              <span className="display">“</span>
+              <p className=" headline3">Testimony</p>
               <div className="user-info">
                 <div className="avatar"></div>
                 <div className="info">
@@ -71,6 +71,67 @@ const Home = () => {
                   <p className="body-regular profession">Profession</p>
                 </div>
               </div>
+            </div>
+
+            <div className="testimonials-card">
+              <span className="display">“</span>
+              <p className="headline3">Testimony</p>
+              <div className="user-info">
+                <div className="avatar"></div>
+                <div className="info">
+                  <p className="body-bold username">username</p>
+                  <p className="body-regular profession">Profession</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="testimonials-card">
+              <span className="display">“</span>
+              <p className="headline3">Testimony</p>
+              <div className="user-info">
+                <div className="avatar"></div>
+                <div className="info">
+                  <p className="body-bold username">username</p>
+                  <p className="body-regular profession">Profession</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="testimonials-card">
+              <span className="display">“</span>
+              <p className="headline3">Testimony</p>
+              <div className="user-info">
+                <div className="avatar"></div>
+                <div className="info">
+                  <p className="body-bold username">username</p>
+                  <p className="body-regular profession">Profession</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="about-section">
+        <div className="container">
+          <h2 className="about-headline headline1">About</h2>
+          <div className="about-content">
+            <div className="text">
+              <div className="head-group">
+                <h2 className="display">Little Lemon</h2>
+                <h3 className="headline1">Chicago</h3>
+              </div>
+              <p className="about-text body-medium">
+                We are a family owned Mediterranean restaurant, focused on
+                traditional recipes served with a modern twist.
+              </p>
+            </div>
+            <div className="img-about-container">
+              <img
+                className="img-about"
+                src="http://drive.google.com/uc?export=view&id=1wDrGY6zf-2MhplqJZfpsvEQW8GfhBND0"
+                alt="Mario and Adrian"
+              ></img>
             </div>
           </div>
         </div>

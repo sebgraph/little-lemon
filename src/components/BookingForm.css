@@ -1,8 +1,113 @@
+button,
+fieldset,
+input,
+legend,
+select,
+textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 .reserve-form {
   display: grid;
-  max-width: 200px;
+  grid-template-columns: 1fr;
+  max-width: 600px;
+  width: 100%;
   gap: 20px;
+  padding: 24px;
+  background: var(--global-neutrals-fill-5);
+  border: 2px solid var(--global-neutrals-fill-3);
+  border-radius: 16px;
 }
 .error-message {
-  color: red;
+  color: var(--global-functional-danger-danger-3);
+  padding: 0;
+  margin: 0;
+}
+
+.loader {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.field-email {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* .input {
+  padding: 12px 8px;
+  line-height: 24px;
+  min-height: 48px;
+  border-radius: 4px;
+}
+
+ */
+
+input,
+select,
+textarea {
+  border: 2px solid #333;
+  background-color: white;
+  border-radius: 0.25rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+select,
+textarea {
+  font-family: var(--global-font-family-karla);
+  font-size: var(--global-font-size-1);
+  font-weight: var(--global-font-weight-medium);
+  line-height: var(--global-line-height-auto);
+  margin: 0;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px 8px;
+}
+
+.input-submit {
+  cursor: pointer;
+  font-weight: var(--global-font-weight-bold);
+  font-size: var(--global-font-size-1);
+  line-height: var(--global-line-height-text);
+  font-family: var(--global-font-family-karla);
+  text-decoration: none;
+  padding: 16px;
+  background-color: var(--global-secondary-6);
+  color: var(--global-neutrals-text-4);
+  transition: all 0.3s ease;
+  border-radius: var(--global-border-s);
+  &:hover {
+    background: var(--global-secondary-4);
+  }
+  &:active {
+    background: var(--global-secondary-3);
+  }
 }

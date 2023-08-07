@@ -1,7 +1,45 @@
+.reservations-section {
+  padding: 48px 24px;
+  background: linear-gradient(
+      90deg,
+      rgba(55, 62, 59, 0.9) 50%,
+      rgba(73, 94, 87, 0) 100%
+    ),
+    url(http://drive.google.com/uc?export=view&id=10QPZ88EgXy4CT320a6uMGgqwYzplLAVH),
+    lightgray 50% / cover no-repeat;
+  display: flex;
+  justify-content: center;
+  height: auto;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
 .container {
   max-width: 1200px;
   margin: auto;
   display: flex;
   flex-direction: column;
   gap: 48px;
+}
+.reservation-text {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: center;
+  width: 600px;
+  align-items: center;
+}
+@media (max-width: 786px) {
+  .reservation-text {
+    width: 100%;
+  }
+}
+.reservation-body {
+  color: var(--global-neutrals-text-1);
+}
+
+.reservation-form {
+  margin: auto;
 }
