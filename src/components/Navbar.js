@@ -12,14 +12,14 @@ function Navbar() {
     <>
       <header>
         <nav>
-          <Link to="/">
+          <Link to="/little-lemon">
             <img src={Logo} alt="Little lemon logo"></img>
           </Link>
           <ul
             className={Mobile ? "links-mobile" : "links"}
             onClick={() => setMobile(false)}
           >
-            <Link className="link link-mobile" to="/">
+            <Link className="link link-mobile" to="/little-lemon">
               <li>Home</li>
             </Link>
             <Link className="link link-mobile" to="/about">
