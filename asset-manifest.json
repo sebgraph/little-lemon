@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/little-lemmon/static/css/main.ab1f3492.css",
+    "main.js": "/little-lemmon/static/js/main.9644f71f.js",
+    "static/js/787.a2f6b77c.chunk.js": "/little-lemmon/static/js/787.a2f6b77c.chunk.js",
+    "index.html": "/little-lemmon/index.html",
+    "main.ab1f3492.css.map": "/little-lemmon/static/css/main.ab1f3492.css.map",
+    "main.9644f71f.js.map": "/little-lemmon/static/js/main.9644f71f.js.map",
+    "787.a2f6b77c.chunk.js.map": "/little-lemmon/static/js/787.a2f6b77c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ab1f3492.css",
+    "static/js/main.9644f71f.js"
+  ]
+}
