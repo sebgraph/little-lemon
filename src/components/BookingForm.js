@@ -200,6 +200,7 @@ const BookingForm = ({ submitForm }) => {
       </div>
 
       <input
+        aria-label="Submit"
         className="input-submit"
         type="submit"
         value="Make Your reservation"

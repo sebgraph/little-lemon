@@ -1,0 +1,13 @@
+.menu-section {
+  padding: 48px 24px;
+  background: url(http://drive.google.com/uc?export=view&id=1_pafOXCI1LpwLW0Vf-GV0p7I0TDhfJSw),
+    lightgray 50% / cover no-repeat;
+  display: flex;
+  justify-content: center;
+  height: 600px;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: white;
+}

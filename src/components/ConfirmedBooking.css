@@ -1,0 +1,29 @@
+.confirmed-section {
+  background-color: var(--global-primary-1);
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.confirmed-container {
+  align-items: center;
+  justify-content: center;
+}
+
+.message-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+  background-color: white;
+  width: auto;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+}
+.check-icon {
+  width: 48px;
+  height: 48px;
+  color: var(--global-functional-success-success-6);
+}

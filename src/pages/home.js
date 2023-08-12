@@ -30,7 +30,9 @@ const Home = () => {
               traditional recipes served with a modern twist.
             </p>
             <Link to="/reservations">
-              <Button className="btn">Reserve a table</Button>
+              <Button aria-label="Reserve a Table" className="btn">
+                Reserve a table
+              </Button>
             </Link>
           </div>
         </div>
@@ -40,7 +42,7 @@ const Home = () => {
         <div className="container">
           <div className="head">
             <h2 className="headline1">Specials</h2>
-            <Button>Online Menu</Button>
+            <Button aria-label="Online Menu">Online Menu</Button>
           </div>
 
           <div className="cards-container">
